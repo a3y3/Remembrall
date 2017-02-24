@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "521017264879",
+    "project_id": "firebase-remembrall"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521017264879:android:5cb9365314196067",
+        "android_client_info": {
+          "package_name": "com.example.soham.remembrall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521017264879-bn8bsibh4ltb32q7kn8sqmn8saqou926.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "521017264879-pja6hfqn74jomcils8n38pmu0u2unocb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soham.remembrall",
+            "certificate_hash": "d02d5e11df5b4ae0fab721aac86ee14ff7a9e8eb"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgehnxAi3mBdJJeSeBMvJySxECTJrYQ8s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
