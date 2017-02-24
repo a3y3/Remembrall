@@ -1,8 +1,11 @@
     package com.example.soham.remembrall;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.AutoScrollHelper;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,14 +15,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.net.Authenticator;
 
     public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+
+        private static final String TAG = MainActivity.class.getSimpleName();
+        private static final int RC_SIGN_IN = 007;
+        private GoogleApiClient googleApiClient;
+        private ProgressDialog progressDialog;
+
+        private SignInButton signInButton;
+        private Button signOutButton;
+        private LinearLayout llProfile;
+        private ImageView profilePicture;
+        private TextView name;
+        private TextView email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +48,20 @@ import java.net.Authenticator;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Starting Sign-in <code></code>
+        signInButton = (SignInButton)findViewById(R.id.signInButton);
+        signOutButton = (Button)findViewById(R.id.signOutButton);
+        llProfile = (LinearLayout)findViewById(R.id.llProfile);
+        profilePicture = (ImageView)findViewById(R.id.profilePicture) ;
+        name = (TextView)findViewById(R.id.name);
+        email = (TextView)findViewById(R.id.name);
+
+        signInButton.setOnClickListener(this);
+        signOutButton.setOnClickListener(this);
+
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        //GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
+        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

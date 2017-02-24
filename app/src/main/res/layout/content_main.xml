@@ -56,5 +56,19 @@
         android:layout_centerHorizontal="true">
 
     </com.google.android.gms.common.SignInButton>
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signInButton"
+        android:layout_centerHorizontal="true"
+        android:text="Sign Out"
+        android:textAllCaps="false"
+        android:background="#FFFFFF"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="10"
+        />
+
 
 </RelativeLayout>
