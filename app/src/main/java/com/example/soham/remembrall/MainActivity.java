@@ -1,11 +1,14 @@
     package com.example.soham.remembrall;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.AutoScrollHelper;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,9 +23,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import java.net.Authenticator;
 
@@ -41,47 +49,106 @@ import java.net.Authenticator;
         private TextView name;
         private TextView email;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        //Starting Sign-in <code></code>
-        signInButton = (SignInButton)findViewById(R.id.signInButton);
-        signOutButton = (Button)findViewById(R.id.signOutButton);
-        llProfile = (LinearLayout)findViewById(R.id.llProfile);
-        profilePicture = (ImageView)findViewById(R.id.profilePicture) ;
-        name = (TextView)findViewById(R.id.name);
-        email = (TextView)findViewById(R.id.name);
+            //Starting Sign-in <code></code>
+            signInButton = (SignInButton)findViewById(R.id.signInButton);
+            signOutButton = (Button)findViewById(R.id.signOutButton);
+            llProfile = (LinearLayout)findViewById(R.id.llProfile);
+            profilePicture = (ImageView)findViewById(R.id.profilePicture) ;
+            name = (TextView)findViewById(R.id.name);
+            email = (TextView)findViewById(R.id.name);
 
-        signInButton.setOnClickListener(this);
-        signOutButton.setOnClickListener(this);
+            signInButton.setOnClickListener(this);
+            signOutButton.setOnClickListener(this);
 
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
+            GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+            googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
+
+            signInButton.setSize(SignInButton.SIZE_STANDARD);
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {@Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                            .setAction("Action", null).show();
+                }
+            });
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+        }
+
+        @Override
+        public void onClick(View view)
+        {
+            switch(view.getId())
+            {
+                case R.id.signInButton:
+                    signIn();
+                    break;
+                case R.id.signOutButton:
+                    signOut();
+                    break;
             }
-        });
+        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        private void signIn()
+        {
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+            startActivityForResult(signInIntent,007);
+        }
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
+        private void signOut()
+        {
+            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+                @Override
+                public void onResult(@NonNull Status status) {
+                    updateUI(false);
+                }
+            });
+        }
+
+        private void updateUI(boolean isSignedIn)
+        {
+            if(isSignedIn)
+            {
+                signInButton.setVisibility(View.GONE);
+                signOutButton.setVisibility(View.VISIBLE);
+                llProfile.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                signInButton.setVisibility(View.VISIBLE);
+                signOutButton.setVisibility(View.VISIBLE);
+                llProfile.setVisibility(View.GONE);
+            }
+        }
+
+        private void handleSignInResult(GoogleSignInResult googleSignInResult)
+        {
+            Log.d
+        }
+
+
+        @Override
+        public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
+        {
+            Log.d(TAG,"onConnectionFailed:"+connectionResult);
+        }
 
     @Override
     public void onBackPressed() {
