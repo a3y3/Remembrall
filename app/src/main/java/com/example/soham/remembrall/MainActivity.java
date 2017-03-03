@@ -33,7 +33,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 
 import java.net.Authenticator;
 
@@ -51,6 +56,8 @@ import java.net.Authenticator;
         private ImageView profilePicture;
         private TextView name;
         private TextView email;
+        private ImageView navBarBackground;
+        private LinearLayout navBar;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,10 @@ import java.net.Authenticator;
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+
+            //Getting nav background
+            navBar = (LinearLayout)findViewById(R.id.nav_bar_background);
+            navBarBackground = (ImageView)navBar.getBackground();
 
             //Starting Sign-in <code></code>
             signInButton = (SignInButton)findViewById(R.id.signInButton);
@@ -70,8 +81,8 @@ import java.net.Authenticator;
             signInButton.setOnClickListener(this);
             signOutButton.setOnClickListener(this);
 
-            GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-            googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).build();
+            GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(new Scope(Scopes.PLUS_LOGIN)).requestEmail().build();
+            googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).addApi(Plus.API).build();
 
             signInButton.setSize(SignInButton.SIZE_STANDARD);
 
@@ -146,16 +157,27 @@ import java.net.Authenticator;
 
         private void handleSignInResult(GoogleSignInResult googleSignInResult)
         {
+            String coverPhotoURL="";
             Log.d(TAG,"handleSignInResult"+googleSignInResult.isSuccess());
+            if(googleApiClient.hasConnectedApi(Plus.API))
+            {
+                Person person = Plus.PeopleApi.getCurrentPerson(googleApiClient);
+                if(person!=null)
+                {
+                    Person.Cover.CoverPhoto coverPhoto = person.getCover().getCoverPhoto();
+                    coverPhotoURL = coverPhoto.getUrl();
+                }
+            }
             if(googleSignInResult.isSuccess())
             {
                 GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
                 String personName = googleSignInAccount.getDisplayName();
                 String photoURL = googleSignInAccount.getPhotoUrl().toString();
+
                 String personEmail = googleSignInAccount.getEmail();
                 name.setText(personName);
                 email.setText(personEmail);
-                Glide.with(getApplicationContext()).load(photoURL).placeholder(R.mipmap.ic_launcher).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(profilePicture);
+                Glide.with(getApplicationContext()).load(coverPhotoURL).placeholder(R.mipmap.ic_launcher).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(profilePicture);
                 profilePicture.setVisibility(View.VISIBLE);
                 updateUI(true);
 
