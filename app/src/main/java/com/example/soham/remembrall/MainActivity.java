@@ -1,11 +1,19 @@
     package com.example.soham.remembrall;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.AutoScrollHelper;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
@@ -25,6 +33,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -39,7 +50,9 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
+import com.google.android.gms.vision.text.Text;
 
+import java.io.InputStream;
 import java.net.Authenticator;
 
     public class MainActivity extends AppCompatActivity
@@ -56,8 +69,11 @@ import java.net.Authenticator;
         private ImageView profilePicture;
         private TextView name;
         private TextView email;
-        private ImageView navBarBackground;
         private LinearLayout navBar;
+        private ImageView navProfilePicture;
+        private TextView navUser;
+        private TextView navEmail;
+        private NavigationView navigationView;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +82,16 @@ import java.net.Authenticator;
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            //Getting nav background
-            navBar = (LinearLayout)findViewById(R.id.nav_bar_background);
-            navBarBackground = (ImageView)navBar.getBackground();
+            //All things nav
+
+            navigationView = (NavigationView)findViewById(R.id.nav_view);
+            View view = navigationView.getHeaderView(0);
+            navUser = (TextView)view.findViewById(R.id.nav_header_user);
+            navEmail = (TextView)view.findViewById(R.id.nav_header_email);
+            navProfilePicture = (ImageView)view.findViewById(R.id.nav_header_profile_picture);
+            navBar = (LinearLayout)view.findViewById(R.id.nav_bar_background);
+
+
 
             //Starting Sign-in <code></code>
             signInButton = (SignInButton)findViewById(R.id.signInButton);
@@ -79,6 +102,7 @@ import java.net.Authenticator;
             email = (TextView)findViewById(R.id.email);
 
             signInButton.setOnClickListener(this);
+            signInButton.performClick();
             signOutButton.setOnClickListener(this);
 
             GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(new Scope(Scopes.PLUS_LOGIN)).requestEmail().build();
@@ -177,8 +201,31 @@ import java.net.Authenticator;
                 String personEmail = googleSignInAccount.getEmail();
                 name.setText(personName);
                 email.setText(personEmail);
-                Glide.with(getApplicationContext()).load(coverPhotoURL).placeholder(R.mipmap.ic_launcher).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(profilePicture);
-                profilePicture.setVisibility(View.VISIBLE);
+                Glide.with(getApplicationContext()).load(photoURL).placeholder(R.mipmap.ic_launcher).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(profilePicture);
+
+                navUser.setText(personName);
+                navEmail.setText(personEmail);
+                //Glide.with(getApplicationContext()).load(photoURL).placeholder(R.mipmap.ic_launcher).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(navProfilePicture);
+                Glide.with(getApplicationContext()).load(photoURL).asBitmap().into(new BitmapImageViewTarget(navProfilePicture){
+                    @Override
+                    protected void setResource(Bitmap resource)
+                    {
+                        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(),resource);
+                        roundedBitmapDrawable.setCircular(true);
+                        navProfilePicture.setImageDrawable(roundedBitmapDrawable);
+                    }
+
+                });
+                Glide.with(getApplicationContext()).load(coverPhotoURL).asBitmap().into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        Drawable drawable = new BitmapDrawable(resource);
+                        navBar.setBackground(drawable);
+
+                    }
+                });
+
+
                 updateUI(true);
 
             }
@@ -186,6 +233,21 @@ import java.net.Authenticator;
             {
                 updateUI(false);
             }
+        }
+
+        private Drawable loadImageFromWeb(String coverURL)
+        {
+            try
+            {
+                InputStream inputStream = (InputStream) new URL(coverURL).getContent();
+                Drawable drawable = Drawable.createFromStream(inputStream,"src");
+                return drawable;
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            return null;
         }
 
         @Override
