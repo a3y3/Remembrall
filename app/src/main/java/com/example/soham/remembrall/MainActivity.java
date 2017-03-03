@@ -23,7 +23,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -62,7 +65,7 @@ import java.net.Authenticator;
             llProfile = (LinearLayout)findViewById(R.id.llProfile);
             profilePicture = (ImageView)findViewById(R.id.profilePicture) ;
             name = (TextView)findViewById(R.id.name);
-            email = (TextView)findViewById(R.id.name);
+            email = (TextView)findViewById(R.id.email);
 
             signInButton.setOnClickListener(this);
             signOutButton.setOnClickListener(this);
@@ -75,9 +78,11 @@ import java.net.Authenticator;
 
 
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-            fab.setOnClickListener(new View.OnClickListener() {@Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            fab.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             });
@@ -116,7 +121,8 @@ import java.net.Authenticator;
         {
             Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
                 @Override
-                public void onResult(@NonNull Status status) {
+                public void onResult(@NonNull Status status)
+                {
                     updateUI(false);
                 }
             });
@@ -133,16 +139,43 @@ import java.net.Authenticator;
             else
             {
                 signInButton.setVisibility(View.VISIBLE);
-                signOutButton.setVisibility(View.VISIBLE);
+                signOutButton.setVisibility(View.GONE);
                 llProfile.setVisibility(View.GONE);
             }
         }
 
         private void handleSignInResult(GoogleSignInResult googleSignInResult)
         {
-            Log.d
+            Log.d(TAG,"handleSignInResult"+googleSignInResult.isSuccess());
+            if(googleSignInResult.isSuccess())
+            {
+                GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
+                String personName = googleSignInAccount.getDisplayName();
+                String photoURL = googleSignInAccount.getPhotoUrl().toString();
+                String personEmail = googleSignInAccount.getEmail();
+                name.setText(personName);
+                email.setText(personEmail);
+                Glide.with(getApplicationContext()).load(photoURL).placeholder(R.mipmap.ic_launcher).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(profilePicture);
+                profilePicture.setVisibility(View.VISIBLE);
+                updateUI(true);
+
+            }
+            else
+            {
+                updateUI(false);
+            }
         }
 
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            super.onActivityResult(requestCode, resultCode, data);
+            if(requestCode == RC_SIGN_IN)
+            {
+                GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                handleSignInResult(googleSignInResult);
+            }
+        }
 
         @Override
         public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
