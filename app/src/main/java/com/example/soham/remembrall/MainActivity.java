@@ -1,4 +1,5 @@
     package com.example.soham.remembrall;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,6 +27,8 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
+
+import java.io.FileOutputStream;
 
     public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -104,21 +107,27 @@ import com.google.android.gms.plus.model.people.Person;
             if(googleSignInResult.isSuccess())
             {
                 GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
-                String personName = googleSignInAccount.getDisplayName();
-                String photoURL = googleSignInAccount.getPhotoUrl().toString();
 
                 String personEmail = googleSignInAccount.getEmail();
                 Intent goToDisplayNotes = new Intent(this,DisplayNotes.class);
-                goToDisplayNotes.putExtra("personName",personName);
-                goToDisplayNotes.putExtra("personEmail",personEmail);
-                goToDisplayNotes.putExtra("photoURL",photoURL);
-                goToDisplayNotes.putExtra("coverPhotoURL",coverPhotoURL);
-                Toast.makeText(this, "Welcome. You're signed in as"+personEmail, Toast.LENGTH_SHORT).show();
+                String fileName = "coverPhoto";
+                FileOutputStream fileOutputStream;
+                try
+                {
+                    fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+                    fileOutputStream.write(coverPhotoURL.getBytes());
+                    fileOutputStream.close();
+                }
+                catch(Exception exception)
+                {
+                    Log.e(TAG, "File Exception occured"+exception.toString());
+                }
+                Toast.makeText(this, "Welcome. You're signed in as "+personEmail, Toast.LENGTH_SHORT).show();
                 startActivity(goToDisplayNotes);
             }
             else
             {
-                //TODO ele here--VERY IMPORTANT
+                //TODO handle if not signed in here. IMPORTANT.
             }
         }
 
