@@ -49,6 +49,7 @@ public class DisplayNotes extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //All things nav
+        
 
         navigationView = (NavigationView)findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);

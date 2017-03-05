@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -112,6 +113,7 @@ import com.google.android.gms.plus.model.people.Person;
                 goToDisplayNotes.putExtra("personEmail",personEmail);
                 goToDisplayNotes.putExtra("photoURL",photoURL);
                 goToDisplayNotes.putExtra("coverPhotoURL",coverPhotoURL);
+                Toast.makeText(this, "Welcome. You're signed in as"+personEmail, Toast.LENGTH_SHORT).show();
                 startActivity(goToDisplayNotes);
             }
             else
