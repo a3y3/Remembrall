@@ -66,21 +66,17 @@ public class DisplayNotes extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(new Scope(Scopes.PLUS_LOGIN)).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).addApi(Plus.API).build();
         /*Check if the user is signed in already. If he is, continue with fetching card data from server. Otherwise, redirect to login*/
+
         OptionalPendingResult<GoogleSignInResult> optionalPendingResult = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
         if(!optionalPendingResult.isDone())
         {
-            Toast.makeText(this, "Not done", Toast.LENGTH_SHORT).show();
             Intent goToLoginActivity = new Intent(this, MainActivity.class);
             startActivity(goToLoginActivity);
-
-
         }
         else {
-            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
             navigationView = (NavigationView) findViewById(R.id.nav_view);
             View view = navigationView.getHeaderView(0);
             navUser = (TextView) view.findViewById(R.id.nav_header_user);
@@ -122,9 +118,6 @@ public class DisplayNotes extends AppCompatActivity
             });
         }
 
-
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +135,8 @@ public class DisplayNotes extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     private void signOut()
@@ -150,6 +145,7 @@ public class DisplayNotes extends AppCompatActivity
             @Override
             public void onResult(@NonNull Status status) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
                 startActivity(intent);
             }
         });

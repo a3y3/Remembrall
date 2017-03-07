@@ -124,6 +124,7 @@ import java.io.FileOutputStream;
                 }
                 Toast.makeText(this, "Welcome. You're signed in as "+personEmail, Toast.LENGTH_SHORT).show();
                 startActivity(goToDisplayNotes);
+                finish();
             }
             else
             {
