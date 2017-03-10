@@ -118,6 +118,7 @@ import java.io.FileOutputStream;
                     fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
                     fileOutputStream.write(coverPhotoURL.getBytes());
                     fileOutputStream.close();
+                    fileOutputStream.flush();
                 }
                 catch(Exception exception)
                 {

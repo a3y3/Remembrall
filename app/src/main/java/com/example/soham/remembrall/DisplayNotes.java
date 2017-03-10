@@ -2,6 +2,8 @@ package com.example.soham.remembrall;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -60,6 +62,8 @@ public class DisplayNotes extends AppCompatActivity
     private NavigationView navigationView;
     private GoogleApiClient googleApiClient;
     private boolean doubleTapBackToExit = false;
+    private SQLiteDatabase sqLiteDatabase;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +101,7 @@ public class DisplayNotes extends AppCompatActivity
                 FileInputStream fileInputStream = getApplicationContext().openFileInput("coverPhoto");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
                 coverPhotoURL = bufferedReader.readLine();
+                fileInputStream.close();
             } catch (Exception exception) {
                 Log.e(TAG, "File Not Found!!!" + exception.toString());
             }
@@ -120,6 +125,8 @@ public class DisplayNotes extends AppCompatActivity
                 }
             });
         }
+
+        displayCards();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +161,16 @@ public class DisplayNotes extends AppCompatActivity
         });
     }
 
+    public void displayCards()
+    {
+        sqLiteDatabase = openOrCreateDatabase("Cards-Test1.db", getApplicationContext().MODE_PRIVATE,null);
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS",null);
+        Toast.makeText(this, ""+cursor.getCount(), Toast.LENGTH_SHORT).show();
+
+
+    }
+
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult)
     {
@@ -162,13 +179,19 @@ public class DisplayNotes extends AppCompatActivity
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+        displayCards();
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(doubleTapBackToExit)
-            {
+            if (doubleTapBackToExit) {
                 super.onBackPressed();
             }
             doubleTapBackToExit = true;
@@ -178,7 +201,7 @@ public class DisplayNotes extends AppCompatActivity
                 public void run() {
                     doubleTapBackToExit = false;
                 }
-            },2000);
+            }, 2000);
 
         }
     }
