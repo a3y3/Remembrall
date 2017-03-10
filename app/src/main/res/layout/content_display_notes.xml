@@ -13,4 +13,5 @@
     tools:context="com.example.soham.remembrall.DisplayNotes"
     tools:showIn="@layout/app_bar_display_notes">
 
+
 </RelativeLayout>

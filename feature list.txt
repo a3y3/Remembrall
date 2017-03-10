@@ -1,0 +1,1 @@
+snackbar on note create

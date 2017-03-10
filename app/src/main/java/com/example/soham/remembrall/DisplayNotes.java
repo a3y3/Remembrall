@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -58,6 +59,7 @@ public class DisplayNotes extends AppCompatActivity
     private TextView navEmail;
     private NavigationView navigationView;
     private GoogleApiClient googleApiClient;
+    private boolean doubleTapBackToExit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class DisplayNotes extends AppCompatActivity
         {
             Intent goToLoginActivity = new Intent(this, MainActivity.class);
             startActivity(goToLoginActivity);
+            finish();
         }
         else {
             navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -122,8 +125,8 @@ public class DisplayNotes extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent goToCreateNote = new Intent(getApplicationContext(), CreateNote.class);
+                startActivity(goToCreateNote);
             }
         });
 
@@ -164,7 +167,19 @@ public class DisplayNotes extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(doubleTapBackToExit)
+            {
+                super.onBackPressed();
+            }
+            doubleTapBackToExit = true;
+            Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleTapBackToExit = false;
+                }
+            },2000);
+
         }
     }
 

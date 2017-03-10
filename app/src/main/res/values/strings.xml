@@ -6,4 +6,13 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_display_notes">DisplayNotes</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="send">Send</string>
+    <string name="share">Share</string>
+    <string name="tools">Tools</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="gallery">Gallery</string>
+    <string name="communicate">Communicate</string>
+    <string name="import_xml">Import</string>
+    <string name="note_create_title">Title</string>
 </resources>

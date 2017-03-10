@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.soham.remembrall">
 
-    <!--Internet Permissions-->
+    <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!--Storage Permissions-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- Storage Permissions -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,15 +19,22 @@
             android:name=".MainActivity"
             android:label="Please Log In"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".DisplayNotes"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".CreateNote"
+                  android:parentActivityName=".DisplayNotes"
+                    android:windowSoftInputMode="stateVisible">
+
         </activity>
     </application>
 
