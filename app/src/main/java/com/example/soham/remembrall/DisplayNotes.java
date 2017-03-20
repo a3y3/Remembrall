@@ -2,9 +2,11 @@ package com.example.soham.remembrall;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,7 +16,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -65,6 +70,10 @@ public class DisplayNotes extends AppCompatActivity
     private SQLiteDatabase sqLiteDatabase;
     private Cursor cursor;
     private String databaseName;
+
+    private RecyclerView recyclerView;
+    private CardAdapter cardAdapter;
+    private int cardsNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +99,12 @@ public class DisplayNotes extends AppCompatActivity
             navEmail = (TextView) view.findViewById(R.id.nav_header_email);
             navProfilePicture = (ImageView) view.findViewById(R.id.nav_header_profile_picture);
             navBar = (LinearLayout) view.findViewById(R.id.nav_bar_background);
+            recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+
+            //==============Do later=============
+            //recyclerView.addItemAnimator();
+
+
 
             GoogleSignInResult googleSignInResult = optionalPendingResult.get();
             GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
@@ -151,6 +166,50 @@ public class DisplayNotes extends AppCompatActivity
 
     }
 
+   /* public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int spanCount;
+        private int spacing;
+        private boolean includeEdge;
+
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+
+                if (position < spanCount) { // top edge
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                if (position >= spanCount) {
+                    outRect.top = spacing; // item top
+                }
+            }
+        }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+   /* private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+    */
+
     private void signOut()
     {
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
@@ -165,10 +224,19 @@ public class DisplayNotes extends AppCompatActivity
 
     public void displayCards()
     {
+        cardAdapter = new CardAdapter(this, cardsNumber);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
+        recyclerView.setAdapter(cardAdapter);
+
         sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE,null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
         cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS",null);
-        Toast.makeText(this, ""+cursor.getCount(), Toast.LENGTH_SHORT).show();
+        int countCards = cursor.getCount();
+        cardsNumber = countCards;
+        cardAdapter.notifyDataSetChanged();
+        Toast.makeText(this, ""+cardsNumber, Toast.LENGTH_SHORT).show();
 
 
     }
