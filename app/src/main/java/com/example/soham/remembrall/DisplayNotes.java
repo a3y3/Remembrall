@@ -101,11 +101,6 @@ public class DisplayNotes extends AppCompatActivity
             navBar = (LinearLayout) view.findViewById(R.id.nav_bar_background);
             recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
 
-            //==============Do later=============
-            //recyclerView.addItemAnimator();
-
-
-
             GoogleSignInResult googleSignInResult = optionalPendingResult.get();
             GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
             String personName = googleSignInAccount.getDisplayName();
@@ -236,7 +231,8 @@ public class DisplayNotes extends AppCompatActivity
         int countCards = cursor.getCount();
         cardsNumber = countCards;
         cardAdapter.notifyDataSetChanged();
-        Toast.makeText(this, ""+cardsNumber, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+cardsNumber, Toast.LENGTH_SHORT).show();
+        Snackbar.make(getWindow().getDecorView().getRootView(),""+cardsNumber, Snackbar.LENGTH_SHORT).show();
 
 
     }
