@@ -64,7 +64,7 @@ public class DisplayNotes extends AppCompatActivity
     private boolean doubleTapBackToExit = false;
     private SQLiteDatabase sqLiteDatabase;
     private Cursor cursor;
-
+    private String databaseName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +94,7 @@ public class DisplayNotes extends AppCompatActivity
             GoogleSignInResult googleSignInResult = optionalPendingResult.get();
             GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
             String personName = googleSignInAccount.getDisplayName();
+            databaseName = "Cards-"+personName;
             String photoURL = googleSignInAccount.getPhotoUrl().toString();
             String personEmail = googleSignInAccount.getEmail();
             String coverPhotoURL = "";
@@ -133,6 +134,7 @@ public class DisplayNotes extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent goToCreateNote = new Intent(getApplicationContext(), CreateNote.class);
+                goToCreateNote.putExtra("databaseName",databaseName);
                 startActivity(goToCreateNote);
             }
         });
@@ -163,7 +165,7 @@ public class DisplayNotes extends AppCompatActivity
 
     public void displayCards()
     {
-        sqLiteDatabase = openOrCreateDatabase("Cards-Test1.db", getApplicationContext().MODE_PRIVATE,null);
+        sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE,null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
         cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS",null);
         Toast.makeText(this, ""+cursor.getCount(), Toast.LENGTH_SHORT).show();

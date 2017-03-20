@@ -1,5 +1,6 @@
 package com.example.soham.remembrall;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
@@ -12,12 +13,15 @@ public class CreateNote extends AppCompatActivity {
     private Cursor cursor;
     private String titleText, noteText, isCheckBox;
     private EditText title, note;
+    private String databaseName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_note);
+        Intent getValues = getIntent();
+        databaseName = getValues.getStringExtra("databaseName");
 
         note = (EditText)findViewById(R.id.note_textfield);
         note.requestFocus();
@@ -25,7 +29,7 @@ public class CreateNote extends AppCompatActivity {
 
 
         //All things database
-        sqLiteDatabase = openOrCreateDatabase("Cards-Test1.db", getApplicationContext().MODE_PRIVATE,null);
+        sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE,null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
 
     }
