@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 public class CreateNote extends AppCompatActivity {
@@ -40,5 +41,24 @@ public class CreateNote extends AppCompatActivity {
         titleText = title.getText().toString();
         noteText = note.getText().toString();
         sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('"+titleText+"','"+noteText+"')");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if(id == R.id.home)
+        {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

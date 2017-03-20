@@ -219,22 +219,19 @@ public class DisplayNotes extends AppCompatActivity
 
     public void displayCards()
     {
-        cardAdapter = new CardAdapter(this, cardsNumber);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
-        recyclerView.setAdapter(cardAdapter);
-
         sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE,null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
         cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS",null);
         int countCards = cursor.getCount();
-        cardsNumber = countCards;
-        cardAdapter.notifyDataSetChanged();
-        //Toast.makeText(this, ""+cardsNumber, Toast.LENGTH_SHORT).show();
         Snackbar.make(getWindow().getDecorView().getRootView(),""+cardsNumber, Snackbar.LENGTH_SHORT).show();
 
-
+        cardsNumber = countCards;
+        cardAdapter = new CardAdapter(this, cardsNumber);
+        cardAdapter.notifyDataSetChanged();
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
+        recyclerView.setAdapter(cardAdapter);
     }
 
     @Override
