@@ -50,7 +50,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
     public void onBindViewHolder(final MyViewHolder myViewHolder, int position)
     {
         NoteHolder noteHolder = noteHolderList.get(position);
+        String noteTitle = noteHolder.get_title();
+        if(noteTitle == null)
+            noteTitle = "Card "+position;
         myViewHolder.cardText.setText(noteHolder.get_note());
-        myViewHolder.cardTitle.setText(noteHolder.get_title());
+        myViewHolder.cardTitle.setText(noteTitle);
     }
 }

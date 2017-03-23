@@ -17,6 +17,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -238,7 +239,6 @@ public class DisplayNotes extends AppCompatActivity
             }
             while (cursor.moveToNext());
         }
-        Snackbar.make(getWindow().getDecorView().getRootView(),""+cardsNumber, Snackbar.LENGTH_SHORT).show();
 
         cardsNumber = countCards;
         cardAdapter = new CardAdapter(cardsNumber, noteHolderList);
@@ -246,6 +246,7 @@ public class DisplayNotes extends AppCompatActivity
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cardAdapter);
     }
 

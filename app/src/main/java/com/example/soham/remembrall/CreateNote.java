@@ -4,12 +4,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.renderscript.ScriptGroup;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CreateNote extends AppCompatActivity {
@@ -27,8 +33,36 @@ public class CreateNote extends AppCompatActivity {
         Intent getValues = getIntent();
         databaseName = getValues.getStringExtra("databaseName");
 
+        title = (EditText)findViewById(R.id.add_title);
+        title.requestFocus();
+        //title.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note = (EditText)findViewById(R.id.note_textfield);
-        note.requestFocus();
+       /* //note.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        //note.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        note.setRawInputType(InputType.TYPE_CLASS_TEXT);    //FIXME. I want Go to new line when you're in uppercase mode.
+        note.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                    handled = true;
+                    onBackPressed();
+                }
+                return handled;
+
+            }
+        });
+        note.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                boolean handled = false;
+                if(keyCode == 29){
+                    handled = true;
+                    note.setImeOptions(EditorInfo.IME_ACTION_NEXT); //FIXME Not sure if this is the right way, but multiline should come here.
+                }
+                return handled;
+            }
+        });*/
         title = (EditText)findViewById(R.id.add_title);
 
 
