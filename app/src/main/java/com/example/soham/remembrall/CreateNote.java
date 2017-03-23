@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CreateNote extends AppCompatActivity {
     private SQLiteDatabase sqLiteDatabase;
@@ -40,6 +41,7 @@ public class CreateNote extends AppCompatActivity {
         super.onBackPressed();
         titleText = title.getText().toString();
         noteText = note.getText().toString();
+        
         sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('"+titleText+"','"+noteText+"')");
     }
 
@@ -50,13 +52,9 @@ public class CreateNote extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         if(id == R.id.home)
         {
+            Toast.makeText(this, "Up pressed", Toast.LENGTH_SHORT).show(); //Not working, Please someone // FIXME: 23-Mar-17
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);

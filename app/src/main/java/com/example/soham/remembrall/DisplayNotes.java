@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -55,6 +56,8 @@ import com.google.android.gms.plus.Plus;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayNotes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -113,7 +116,8 @@ public class DisplayNotes extends AppCompatActivity
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
                 coverPhotoURL = bufferedReader.readLine();
                 fileInputStream.close();
-            } catch (Exception exception) {
+            }
+            catch (Exception exception) {
                 Log.e(TAG, "File Not Found!!!" + exception.toString());
             }
             navUser.setText(personName);
@@ -219,14 +223,26 @@ public class DisplayNotes extends AppCompatActivity
 
     public void displayCards()
     {
+        List<NoteHolder> noteHolderList = new ArrayList<NoteHolder>();  //Not sure if this should be a local variable
         sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE,null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
         cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS",null);
         int countCards = cursor.getCount();
+        if(cursor.moveToFirst()) {
+            do {
+                int _id = cursor.getInt(0);
+                String _title = cursor.getString(1);
+                String _note = cursor.getString(2);
+                NoteHolder noteHolder = new NoteHolder(_id, _title, _note);
+                Log.e("007", "Created noteHolder object with"+noteHolder.get_note());
+                noteHolderList.add(noteHolder);
+            }
+            while (cursor.moveToNext());
+        }
         Snackbar.make(getWindow().getDecorView().getRootView(),""+cardsNumber, Snackbar.LENGTH_SHORT).show();
 
         cardsNumber = countCards;
-        cardAdapter = new CardAdapter(this, cardsNumber);
+        cardAdapter = new CardAdapter(cardsNumber, noteHolderList);
         cardAdapter.notifyDataSetChanged();
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);

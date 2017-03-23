@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,9 +15,9 @@ import java.util.List;
  */
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
-    private Context mContext;
     //private List<int> cardsList;
     private int cardsNumber;
+    private List<NoteHolder> noteHolderList = new ArrayList<NoteHolder>();
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView cardText;
 
@@ -26,10 +27,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
         }
     }
 
-    public CardAdapter(Context mContext, int cardsNumber)
+    public CardAdapter(int cardsNumber, List<NoteHolder> noteHolderList)
     {
-        this.mContext = mContext;
         this.cardsNumber = cardsNumber;
+        this.noteHolderList = noteHolderList;
     }
 
     public int getItemCount() {
@@ -46,6 +47,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(final MyViewHolder myViewHolder, int position)
     {
-        myViewHolder.cardText.setText(("testing"));
+        NoteHolder noteHolder = noteHolderList.get(position);
+        myViewHolder.cardText.setText(noteHolder.get_note());
     }
 }
