@@ -2,10 +2,12 @@ package com.example.soham.remembrall;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,7 +43,10 @@ public class CreateNote extends AppCompatActivity {
         super.onBackPressed();
         titleText = title.getText().toString();
         noteText = note.getText().toString();
-        
+        //noteText = noteText.replaceAll("'","\'");
+        if(noteText.contains("'")){
+            noteText = noteText.replaceAll("'","''");
+        }
         sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('"+titleText+"','"+noteText+"')");
     }
 

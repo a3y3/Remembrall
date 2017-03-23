@@ -234,7 +234,6 @@ public class DisplayNotes extends AppCompatActivity
                 String _title = cursor.getString(1);
                 String _note = cursor.getString(2);
                 NoteHolder noteHolder = new NoteHolder(_id, _title, _note);
-                Log.e("007", "Created noteHolder object with"+noteHolder.get_note());
                 noteHolderList.add(noteHolder);
             }
             while (cursor.moveToNext());

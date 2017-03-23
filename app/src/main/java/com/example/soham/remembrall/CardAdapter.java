@@ -20,9 +20,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
     private List<NoteHolder> noteHolderList = new ArrayList<NoteHolder>();
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView cardText;
+        public TextView cardTitle;
 
         public MyViewHolder(View view) {
             super(view);
+            this.cardTitle = (TextView)view.findViewById(R.id.title_card);
             this.cardText = (TextView) view.findViewById(R.id.text_card);
         }
     }
@@ -49,5 +51,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
     {
         NoteHolder noteHolder = noteHolderList.get(position);
         myViewHolder.cardText.setText(noteHolder.get_note());
+        myViewHolder.cardTitle.setText(noteHolder.get_title());
     }
 }
