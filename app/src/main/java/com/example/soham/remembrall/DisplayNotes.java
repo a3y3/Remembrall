@@ -222,14 +222,13 @@ public class DisplayNotes extends AppCompatActivity
         });
     }
 
-    public void displayCards()
-    {
+    public void displayCards() {
         List<NoteHolder> noteHolderList = new ArrayList<NoteHolder>();  //Not sure if this should be a local variable
-        sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE,null);
+        sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE, null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS",null);
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS", null);
         int countCards = cursor.getCount();
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             do {
                 int _id = cursor.getInt(0);
                 String _title = cursor.getString(1);
@@ -247,7 +246,17 @@ public class DisplayNotes extends AppCompatActivity
         recyclerView.setLayoutManager(mLayoutManager);
         //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.OnItemClickListener(){
+            @Override
+            public void onItemClick(View view, int position){
+                Toast.makeText(DisplayNotes.this, "Card "+position+" clicked", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position){}
+        }));
         recyclerView.setAdapter(cardAdapter);
+
     }
 
     @Override

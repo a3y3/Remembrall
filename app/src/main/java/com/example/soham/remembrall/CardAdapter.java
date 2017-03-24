@@ -2,6 +2,7 @@ package com.example.soham.remembrall;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,9 @@ import java.util.List;
  */
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
-    //private List<int> cardsList;
     private int cardsNumber;
     private List<NoteHolder> noteHolderList = new ArrayList<NoteHolder>();
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView cardText;
         public TextView cardTitle;
@@ -50,10 +51,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder>{
     public void onBindViewHolder(final MyViewHolder myViewHolder, int position)
     {
         NoteHolder noteHolder = noteHolderList.get(position);
-        String noteTitle = noteHolder.get_title();
-        if(noteTitle == null)
-            noteTitle = "Card "+position;
         myViewHolder.cardText.setText(noteHolder.get_note());
-        myViewHolder.cardTitle.setText(noteTitle);
+        myViewHolder.cardTitle.setText(noteHolder.get_title());
     }
 }
