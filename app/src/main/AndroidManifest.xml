@@ -31,9 +31,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateNote"
-                  android:parentActivityName=".DisplayNotes"
-                  android:windowSoftInputMode="stateVisible">
+        <activity
+            android:name=".CreateNote"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".DisplayNotes"
+            android:windowSoftInputMode="stateVisible">
         </activity>
     </application>
 

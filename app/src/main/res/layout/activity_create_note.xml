@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.soham.remembrall.CreateNote">
+    android:fitsSystemWindows="true"
+    tools:context="com.example.soham.remembrall.CreateNote"
+    android:id="@+id/create_note_coordinate_layout"
+    android:layout_marginBottom="4dp">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:menu="@menu/activity_create_notes">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:id="@+id/my_toolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.soham.remembrall.CreateNote"
+        android:layout_marginTop="72dp">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -44,7 +70,8 @@
             android:inputType="textCapSentences"
             android:layout_marginTop="16dp"
             />
+        </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
-    </android.support.design.widget.TextInputLayout>
 
-</RelativeLayout>

@@ -6,19 +6,26 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.renderscript.ScriptGroup;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ActionBarOverlayLayout;
+import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateNote extends AppCompatActivity {
+public class CreateNote extends AppCompatActivity{
     private SQLiteDatabase sqLiteDatabase;
     private Cursor cursor;
     private String titleText, noteText, isCheckBox;
@@ -33,6 +40,11 @@ public class CreateNote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_note);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         Intent getIntentValues = getIntent();
         databaseName = getIntentValues.getStringExtra("databaseName");
         cardNoteFromIntent = getIntentValues.getStringExtra("cardText");
@@ -81,5 +93,12 @@ public class CreateNote extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.display_notes, menu);
+        return true;
     }
 }
