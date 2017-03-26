@@ -24,52 +24,31 @@ public class CreateNote extends AppCompatActivity {
     private String titleText, noteText, isCheckBox;
     private EditText title, note;
     private String databaseName;
+    private String cardNoteFromIntent;
+    private String cardTitleFromIntent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_note);
-        Intent getValues = getIntent();
-        databaseName = getValues.getStringExtra("databaseName");
+        Intent getIntentValues = getIntent();
+        databaseName = getIntentValues.getStringExtra("databaseName");
+        cardNoteFromIntent = getIntentValues.getStringExtra("cardText");
+        cardTitleFromIntent = getIntentValues.getStringExtra("cardTitle");
 
-        title = (EditText)findViewById(R.id.add_title);
+        title = (EditText) findViewById(R.id.add_title);
         title.requestFocus();
-        //title.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        note = (EditText)findViewById(R.id.note_textfield);
-       /* //note.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        //note.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        note.setRawInputType(InputType.TYPE_CLASS_TEXT);    //FIXME. I want Go to new line when you're in uppercase mode.
-        note.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if(actionId == EditorInfo.IME_ACTION_DONE){
-                    handled = true;
-                    onBackPressed();
-                }
-                return handled;
-
-            }
-        });
-        note.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                boolean handled = false;
-                if(keyCode == 29){
-                    handled = true;
-                    note.setImeOptions(EditorInfo.IME_ACTION_NEXT); //FIXME Not sure if this is the right way, but multiline should come here.
-                }
-                return handled;
-            }
-        });*/
-        title = (EditText)findViewById(R.id.add_title);
-
+        note = (EditText) findViewById(R.id.note_textfield);
 
         //All things database
-        sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE,null);
+        sqLiteDatabase = openOrCreateDatabase(databaseName, this.MODE_PRIVATE, null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
 
+        if (cardTitleFromIntent != null) {
+            title.setText(cardTitleFromIntent);
+            note.setText(cardNoteFromIntent);
+        }
     }
     @Override
     public void onBackPressed()

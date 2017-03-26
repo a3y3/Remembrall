@@ -16,4 +16,5 @@
     <string name="import_xml">Import</string>
     <string name="note_create_title">Title</string>
     <string name="note_hint">Note</string>
+    <string name="click_back_to_exit">Please click back again to exit</string>
 </resources>

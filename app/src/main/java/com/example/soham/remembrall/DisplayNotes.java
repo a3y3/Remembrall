@@ -78,6 +78,7 @@ public class DisplayNotes extends AppCompatActivity
     private RecyclerView recyclerView;
     private CardAdapter cardAdapter;
     private int cardsNumber;
+    List<NoteHolder> noteHolderList = new ArrayList<NoteHolder>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +105,22 @@ public class DisplayNotes extends AppCompatActivity
             navProfilePicture = (ImageView) view.findViewById(R.id.nav_header_profile_picture);
             navBar = (LinearLayout) view.findViewById(R.id.nav_bar_background);
             recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+
+            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.OnItemClickListener(){
+                @Override
+                public void onItemClick(View view, int position){
+                    Intent intent = new Intent(DisplayNotes.this, CreateNote.class);
+                    NoteHolder noteHolder = noteHolderList.get(position);
+
+                    intent.putExtra("cardTitle",noteHolder.get_title());
+                    intent.putExtra("cardText", noteHolder.get_note());
+                    intent.putExtra("databaseName", databaseName);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onItemLongClick(View view, int position){}
+            }));
 
             GoogleSignInResult googleSignInResult = optionalPendingResult.get();
             GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
@@ -142,7 +159,6 @@ public class DisplayNotes extends AppCompatActivity
             });
         }
 
-        displayCards();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -166,50 +182,6 @@ public class DisplayNotes extends AppCompatActivity
 
     }
 
-   /* public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
-
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-            this.spanCount = spanCount;
-            this.spacing = spacing;
-            this.includeEdge = includeEdge;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            int position = parent.getChildAdapterPosition(view); // item position
-            int column = position % spanCount; // item column
-
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-                if (position < spanCount) { // top edge
-                    outRect.top = spacing;
-                }
-                outRect.bottom = spacing; // item bottom
-            } else {
-                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                if (position >= spanCount) {
-                    outRect.top = spacing; // item top
-                }
-            }
-        }
-    }
-
-    /**
-     * Converting dp to pixel
-     */
-   /* private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
-    */
-
     private void signOut()
     {
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
@@ -223,7 +195,7 @@ public class DisplayNotes extends AppCompatActivity
     }
 
     public void displayCards() {
-        List<NoteHolder> noteHolderList = new ArrayList<NoteHolder>();  //Not sure if this should be a local variable
+
         sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE, null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
         cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS", null);
@@ -246,15 +218,8 @@ public class DisplayNotes extends AppCompatActivity
         recyclerView.setLayoutManager(mLayoutManager);
         //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.OnItemClickListener(){
-            @Override
-            public void onItemClick(View view, int position){
-                Toast.makeText(DisplayNotes.this, "Card "+position+" clicked", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position){}
-        }));
+        Log.e("111","I'm here once");
+        //IMPORTANT- I'VE MOVED addOnItemTouchListener OUT OF displayCards() AS A NEW LISTENER WAS GETTING SET EVERY TIME displayCards() WAS GETTING CALLED
         recyclerView.setAdapter(cardAdapter);
 
     }
@@ -271,6 +236,7 @@ public class DisplayNotes extends AppCompatActivity
     {
         super.onResume();
         displayCards();
+        Log.e("111","displayCards() called by onResume()");
     }
 
     @Override
@@ -283,7 +249,7 @@ public class DisplayNotes extends AppCompatActivity
                 super.onBackPressed();
             }
             doubleTapBackToExit = true;
-            Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.click_back_to_exit, Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
