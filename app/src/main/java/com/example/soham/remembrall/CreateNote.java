@@ -26,6 +26,7 @@ public class CreateNote extends AppCompatActivity {
     private String databaseName;
     private String cardNoteFromIntent;
     private String cardTitleFromIntent;
+    private boolean updateNote = false;
 
 
     @Override
@@ -46,21 +47,25 @@ public class CreateNote extends AppCompatActivity {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
 
         if (cardTitleFromIntent != null) {
+            updateNote = true;
             title.setText(cardTitleFromIntent);
             note.setText(cardNoteFromIntent);
         }
     }
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
         titleText = title.getText().toString();
         noteText = note.getText().toString();
-        //noteText = noteText.replaceAll("'","\'");
-        if(noteText.contains("'")){
-            noteText = noteText.replaceAll("'","''");
+        if (noteText.contains("'")) {
+            noteText = noteText.replaceAll("'", "''");
         }
-        sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('"+titleText+"','"+noteText+"')");
+        if (updateNote) {
+            sqLiteDatabase.execSQL("UPDATE CARDS SET TITLE='" + titleText + "' WHERE NOTE='" + cardNoteFromIntent +"'");
+            sqLiteDatabase.execSQL("UPDATE CARDS SET NOTE='" +noteText +"' WHERE NOTE='" + cardNoteFromIntent +"'");
+        } else {
+            sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('" + titleText + "','" + noteText + "')");
+        }
     }
 
     @Override

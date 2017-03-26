@@ -159,7 +159,6 @@ public class DisplayNotes extends AppCompatActivity
             });
         }
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,11 +194,11 @@ public class DisplayNotes extends AppCompatActivity
     }
 
     public void displayCards() {
-
         sqLiteDatabase = openOrCreateDatabase(databaseName, getApplicationContext().MODE_PRIVATE, null);
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS CARDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE VARCHAR, NOTE VARCHAR, IS_CHECKBOX VARCHAR)");
         cursor = sqLiteDatabase.rawQuery("SELECT * FROM CARDS", null);
         int countCards = cursor.getCount();
+        noteHolderList.clear();
         if (cursor.moveToFirst()) {
             do {
                 int _id = cursor.getInt(0);
@@ -214,14 +213,11 @@ public class DisplayNotes extends AppCompatActivity
         cardsNumber = countCards;
         cardAdapter = new CardAdapter(cardsNumber, noteHolderList);
         cardAdapter.notifyDataSetChanged();
+
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10),true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        Log.e("111","I'm here once");
-        //IMPORTANT- I'VE MOVED addOnItemTouchListener OUT OF displayCards() AS A NEW LISTENER WAS GETTING SET EVERY TIME displayCards() WAS GETTING CALLED
         recyclerView.setAdapter(cardAdapter);
-
     }
 
     @Override
@@ -236,7 +232,6 @@ public class DisplayNotes extends AppCompatActivity
     {
         super.onResume();
         displayCards();
-        Log.e("111","displayCards() called by onResume()");
     }
 
     @Override
