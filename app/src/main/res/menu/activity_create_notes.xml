@@ -2,9 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/test_item"
-        android:title="Test item"
-        android:icon="@drawable/ic_exit_to_app_black_36dp"
-        app:showAsAction="ifRoom"
+        android:id="@+id/do_not_save"
+        android:title="@string/dont_save_note"
+        app:showAsAction="never"
     />
+    <item
+        android:id="@+id/add_note_reminder"
+        android:title="@string/add_note_reminder"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_add_alarm_white_36dp"
+        />
 </menu>

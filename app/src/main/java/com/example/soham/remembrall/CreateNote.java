@@ -34,6 +34,7 @@ public class CreateNote extends AppCompatActivity{
     private String cardNoteFromIntent;
     private String cardTitleFromIntent;
     private boolean updateNote = false;
+    private boolean dontSaveNote = false;
 
 
     @Override
@@ -76,7 +77,8 @@ public class CreateNote extends AppCompatActivity{
             sqLiteDatabase.execSQL("UPDATE CARDS SET TITLE='" + titleText + "' WHERE NOTE='" + cardNoteFromIntent +"'");
             sqLiteDatabase.execSQL("UPDATE CARDS SET NOTE='" +noteText +"' WHERE NOTE='" + cardNoteFromIntent +"'");
         } else {
-            sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('" + titleText + "','" + noteText + "')");
+            if(!dontSaveNote)
+                sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('" + titleText + "','" + noteText + "')");
         }
     }
 
@@ -86,11 +88,19 @@ public class CreateNote extends AppCompatActivity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id){
+            case R.id.add_note_reminder:
+                Toast.makeText(this, "Added Reminder successfully!", Toast.LENGTH_SHORT).show();
+                break;
 
-        if(id == R.id.home)
-        {
-            Toast.makeText(this, "Up pressed", Toast.LENGTH_SHORT).show(); //Not working, Please someone // FIXME: 23-Mar-17
-            onBackPressed();
+            case android.R.id.home:                     
+                onBackPressed();
+                break;
+
+            case R.id.do_not_save:
+                dontSaveNote = true;
+                onBackPressed();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -98,7 +108,7 @@ public class CreateNote extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.display_notes, menu);
+        getMenuInflater().inflate(R.menu.activity_create_notes, menu);
         return true;
     }
 }

@@ -140,23 +140,27 @@ public class DisplayNotes extends AppCompatActivity
             }
             navUser.setText(personName);
             navEmail.setText(personEmail);
-            Glide.with(getApplicationContext()).load(photoURL).asBitmap().into(new BitmapImageViewTarget(navProfilePicture) {
-                @Override
-                protected void setResource(Bitmap resource) {
-                    RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
-                    roundedBitmapDrawable.setCircular(true);
-                    navProfilePicture.setImageDrawable(roundedBitmapDrawable);
-                }
+            if(photoURL != null || !photoURL.equals("")) {
+                Glide.with(getApplicationContext()).load(photoURL).asBitmap().into(new BitmapImageViewTarget(navProfilePicture) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
+                        roundedBitmapDrawable.setCircular(true);
+                        navProfilePicture.setImageDrawable(roundedBitmapDrawable);
+                    }
 
-            });
-            Glide.with(getApplicationContext()).load(coverPhotoURL).asBitmap().into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    Drawable drawable = new BitmapDrawable(resource);
-                    navBar.setBackground(drawable);
+                });
+            }
+            if(coverPhotoURL != null || !coverPhotoURL.equals("")) {
+                Glide.with(getApplicationContext()).load(coverPhotoURL).asBitmap().into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        Drawable drawable = new BitmapDrawable(resource);
+                        navBar.setBackground(drawable);
 
-                }
-            });
+                    }
+                });
+            }
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
