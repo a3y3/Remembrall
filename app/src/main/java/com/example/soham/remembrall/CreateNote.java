@@ -93,7 +93,7 @@ public class CreateNote extends AppCompatActivity{
                 Toast.makeText(this, "Added Reminder successfully!", Toast.LENGTH_SHORT).show();
                 break;
 
-            case android.R.id.home:                     
+            case android.R.id.home:
                 onBackPressed();
                 break;
 

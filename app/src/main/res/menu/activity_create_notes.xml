@@ -10,6 +10,6 @@
         android:id="@+id/add_note_reminder"
         android:title="@string/add_note_reminder"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_add_alarm_white_36dp"
+        android:icon="@drawable/ic_add_alarm_white_24dp"
         />
 </menu>
