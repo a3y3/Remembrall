@@ -1,9 +1,14 @@
 package com.example.soham.remembrall;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.SystemClock;
 import android.renderscript.ScriptGroup;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -101,8 +106,35 @@ public class CreateNote extends AppCompatActivity{
                 dontSaveNote = true;
                 onBackPressed();
                 break;
+
+            case R.id.action_5:
+                scheduleNotification(getNotification("5 second delay"), 5000);
+                break;
+
+            case R.id.action_10:
+                scheduleNotification(getNotification("10 second delay"), 10000);
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void scheduleNotification(Notification notification, int delay){
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+    }
+
+    private Notification getNotification(String content){
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setContentTitle("Scheduled Notification!");
+        builder.setContentText(content);
+        builder.setSmallIcon(R.mipmap.remembrall);
+        return builder.build();
     }
 
     @Override

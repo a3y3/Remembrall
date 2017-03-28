@@ -37,6 +37,7 @@
             android:parentActivityName=".DisplayNotes"
             android:windowSoftInputMode="stateVisible">
         </activity>
+        <receiver android:name=".NotificationPublisher"></receiver>
     </application>
 
 </manifest>

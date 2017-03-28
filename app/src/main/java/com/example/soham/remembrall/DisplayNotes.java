@@ -257,6 +257,7 @@ public class DisplayNotes extends AppCompatActivity
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cardAdapter);
+        //IMPORTANT- onItemTouchListener is placed in onCreate() and not here because a new clickListener is added everytime displayCards() is aclled (which is a lot of times)
     }
 
     @Override
