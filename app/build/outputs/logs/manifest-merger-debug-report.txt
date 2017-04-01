@@ -27,24 +27,24 @@ ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:10:5-80
 		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:10:22-77
 application
 ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:12:5-41:19
-MERGED from [com.google.android.gms:play-services-plus:10.2.0] C:\Users\Soham\.android\build-cache\a6b6ee7225c90d3809cb26528dedc0bdd8a41621\output\AndroidManifest.xml:18:5-19
-MERGED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:19:5-25:19
-MERGED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\Soham\.android\build-cache\c11d8862d6d3f767bff56023e5775b70ab97b3b1\output\AndroidManifest.xml:18:5-20:19
-MERGED from [com.google.android.gms:play-services-tasks:10.2.0] C:\Users\Soham\.android\build-cache\2f89816cb89d0eed257ed688722c0c5befaeecc4\output\AndroidManifest.xml:4:5-19
-MERGED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\Soham\.android\build-cache\0fdadf542c3df21041d212ea7eed35ac59f51ba1\output\AndroidManifest.xml:19:5-21:19
+MERGED from [com.google.android.gms:play-services-plus:10.2.1] C:\Users\Soham\.android\build-cache\225af14637e38c02afbb8752be2a8b50db5cc7fe\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:19:5-25:19
+MERGED from [com.google.android.gms:play-services-base:10.2.1] C:\Users\Soham\.android\build-cache\0116acb47b658bd07343fd3f990137cdabee75c7\output\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-tasks:10.2.1] C:\Users\Soham\.android\build-cache\5768bfe1abadcd993bc51738e0e22b37e0c5c208\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soham\.android\build-cache\abe41b2f87a562cddf91024bad8a2555af690ece\output\AndroidManifest.xml:19:5-21:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.1] C:\Users\Soham\.android\build-cache\e871f485190b45c7a5bd6a7b693420fe5c63916d\output\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:cardview-v7:25.2.0] C:\Users\Soham\.android\build-cache\85af07fc1ce0ac09d7e1e482e3a0cf4f4d7029da\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:25.2.0] C:\Users\Soham\.android\build-cache\561849755ae128bddbe06d774c2f45a522b22059\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Soham\.android\build-cache\30fa4612ff71aed566268eea4f44cd9206ea5daf\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Soham\.android\build-cache\078a0ce28123209bfb24ebf19ab18ac0072f3aaf\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\Soham\.android\build-cache\ff51d8c1278f95453a3877f01cba8b2c077a02ce\output\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:transition:25.2.0] C:\Users\Soham\.android\build-cache\066aee0c8f05f1c286416d9865b1fbe94e9be44f\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Soham\.android\build-cache\98a2ba97d9a923feecfbff405d61180a10f5e059\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\Soham\.android\build-cache\258e31e2dd8a4f6c086c439b842181d1048a8eb8\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\Soham\.android\build-cache\1d8f726835596c3c3d568de41c1a8b6255dfc8a6\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\Soham\.android\build-cache\bb04ee1857a7b46a5677ac37fe952c95d160fa9d\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\Soham\.android\build-cache\020973b1bf339d895ef223d3639896034f289914\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Soham\.android\build-cache\4f1ba0e68f9185e2f0f071cc029f36e8aa480c6c\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Soham\.android\build-cache\d35379823beeb3d5b1cbcc5ac4b3842c36946bb5\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Soham\.android\build-cache\efe85a4698e484bdedf8484f3b52985110b52607\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Soham\.android\build-cache\23a7f4b6e491180833ae852c2997897a2466fc55\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Soham\.android\build-cache\986ab3b614e197753cf36a71da71218e135bbeba\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Soham\.android\build-cache\0937ca77253b6febfdab0c44c7cf9db602d8676a\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Soham\.android\build-cache\ab4e77d62bd8c87d9fc112d2d0a23839f53281d8\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Soham\.android\build-cache\e54a7a18a05135b46ca81267d0d3846e43aad45e\output\AndroidManifest.xml:29:5-20
 	android:label
 		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:15:9-41
 	android:supportsRtl
@@ -97,28 +97,28 @@ ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:40:9-68
 		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:40:19-56
 uses-sdk
 INJECTED from D:\Remembrall\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.google.android.gms:play-services-plus:10.2.0] C:\Users\Soham\.android\build-cache\a6b6ee7225c90d3809cb26528dedc0bdd8a41621\output\AndroidManifest.xml:17:5-43
-MERGED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:17:5-43
-MERGED from [com.google.android.gms:play-services-auth-base:10.2.0] C:\Users\Soham\.android\build-cache\94ee0f0a6506a14eca3044c2e3c9dd3623e90507\output\AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\Soham\.android\build-cache\c11d8862d6d3f767bff56023e5775b70ab97b3b1\output\AndroidManifest.xml:17:5-43
-MERGED from [com.google.android.gms:play-services-tasks:10.2.0] C:\Users\Soham\.android\build-cache\2f89816cb89d0eed257ed688722c0c5befaeecc4\output\AndroidManifest.xml:3:5-43
-MERGED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\Soham\.android\build-cache\0fdadf542c3df21041d212ea7eed35ac59f51ba1\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-plus:10.2.1] C:\Users\Soham\.android\build-cache\225af14637e38c02afbb8752be2a8b50db5cc7fe\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-auth-base:10.2.1] C:\Users\Soham\.android\build-cache\d0b5d945c24dd98294b13edec636571668a80998\output\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-base:10.2.1] C:\Users\Soham\.android\build-cache\0116acb47b658bd07343fd3f990137cdabee75c7\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-tasks:10.2.1] C:\Users\Soham\.android\build-cache\5768bfe1abadcd993bc51738e0e22b37e0c5c208\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soham\.android\build-cache\abe41b2f87a562cddf91024bad8a2555af690ece\output\AndroidManifest.xml:17:5-43
 MERGED from [com.android.support.constraint:constraint-layout:1.0.1] C:\Users\Soham\.android\build-cache\e871f485190b45c7a5bd6a7b693420fe5c63916d\output\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:cardview-v7:25.2.0] C:\Users\Soham\.android\build-cache\85af07fc1ce0ac09d7e1e482e3a0cf4f4d7029da\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:design:25.2.0] C:\Users\Soham\.android\build-cache\561849755ae128bddbe06d774c2f45a522b22059\output\AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Soham\.android\build-cache\30fa4612ff71aed566268eea4f44cd9206ea5daf\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Soham\.android\build-cache\078a0ce28123209bfb24ebf19ab18ac0072f3aaf\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\Soham\.android\build-cache\ff51d8c1278f95453a3877f01cba8b2c077a02ce\output\AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:recyclerview-v7:25.2.0] C:\Users\Soham\.android\build-cache\3cbff35608548d75db86b8b2154a681e7b17ec73\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:transition:25.2.0] C:\Users\Soham\.android\build-cache\066aee0c8f05f1c286416d9865b1fbe94e9be44f\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Soham\.android\build-cache\98a2ba97d9a923feecfbff405d61180a10f5e059\output\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\Soham\.android\build-cache\258e31e2dd8a4f6c086c439b842181d1048a8eb8\output\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\Soham\.android\build-cache\1d8f726835596c3c3d568de41c1a8b6255dfc8a6\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\Soham\.android\build-cache\bb04ee1857a7b46a5677ac37fe952c95d160fa9d\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\Soham\.android\build-cache\020973b1bf339d895ef223d3639896034f289914\output\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Soham\.android\build-cache\4f1ba0e68f9185e2f0f071cc029f36e8aa480c6c\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Soham\.android\build-cache\a239449d7a6ea1ec52c1ad471e8cff135e01ec4e\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Soham\.android\build-cache\d35379823beeb3d5b1cbcc5ac4b3842c36946bb5\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Soham\.android\build-cache\efe85a4698e484bdedf8484f3b52985110b52607\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Soham\.android\build-cache\23a7f4b6e491180833ae852c2997897a2466fc55\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Soham\.android\build-cache\986ab3b614e197753cf36a71da71218e135bbeba\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Soham\.android\build-cache\0937ca77253b6febfdab0c44c7cf9db602d8676a\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Soham\.android\build-cache\ab4e77d62bd8c87d9fc112d2d0a23839f53281d8\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Soham\.android\build-cache\e54a7a18a05135b46ca81267d0d3846e43aad45e\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:design:25.2.0] C:\Users\Soham\.android\build-cache\561849755ae128bddbe06d774c2f45a522b22059\output\AndroidManifest.xml:23:9-59
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
 		INJECTED from D:\Remembrall\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Remembrall\app\src\main\AndroidManifest.xml
@@ -126,34 +126,52 @@ MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Soham\.android\
 		INJECTED from D:\Remembrall\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Remembrall\app\src\main\AndroidManifest.xml
 activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
-ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:20:9-189
+ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:20:9-189
 	android:excludeFromRecents
-		ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:20:129-162
+		ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:20:129-162
 	android:exported
-		ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:20:163-187
+		ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:20:163-187
 	android:theme
-		ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:20:69-128
+		ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:20:69-128
 	android:name
-		ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:20:19-68
+		ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:20:19-68
 service#com.google.android.gms.auth.api.signin.RevocationBoundService
-ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:24:9-184
+ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:24:9-184
 	android:exported
-		ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:24:64-87
+		ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:24:64-87
 	android:permission
-		ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:24:88-182
+		ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:24:88-182
 	android:name
-		ADDED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\Soham\.android\build-cache\4f9134b88ce13d05029f744cc83021b08695ba6b\output\AndroidManifest.xml:24:18-63
+		ADDED from [com.google.android.gms:play-services-auth:10.2.1] C:\Users\Soham\.android\build-cache\6d9f73f64dea69342503ef9024e43297e132eb57\output\AndroidManifest.xml:24:18-63
 activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\Soham\.android\build-cache\c11d8862d6d3f767bff56023e5775b70ab97b3b1\output\AndroidManifest.xml:19:9-172
+ADDED from [com.google.android.gms:play-services-base:10.2.1] C:\Users\Soham\.android\build-cache\0116acb47b658bd07343fd3f990137cdabee75c7\output\AndroidManifest.xml:19:9-172
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\Soham\.android\build-cache\c11d8862d6d3f767bff56023e5775b70ab97b3b1\output\AndroidManifest.xml:19:146-170
+		ADDED from [com.google.android.gms:play-services-base:10.2.1] C:\Users\Soham\.android\build-cache\0116acb47b658bd07343fd3f990137cdabee75c7\output\AndroidManifest.xml:19:146-170
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\Soham\.android\build-cache\c11d8862d6d3f767bff56023e5775b70ab97b3b1\output\AndroidManifest.xml:19:86-145
+		ADDED from [com.google.android.gms:play-services-base:10.2.1] C:\Users\Soham\.android\build-cache\0116acb47b658bd07343fd3f990137cdabee75c7\output\AndroidManifest.xml:19:86-145
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\Soham\.android\build-cache\c11d8862d6d3f767bff56023e5775b70ab97b3b1\output\AndroidManifest.xml:19:19-85
+		ADDED from [com.google.android.gms:play-services-base:10.2.1] C:\Users\Soham\.android\build-cache\0116acb47b658bd07343fd3f990137cdabee75c7\output\AndroidManifest.xml:19:19-85
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\Soham\.android\build-cache\0fdadf542c3df21041d212ea7eed35ac59f51ba1\output\AndroidManifest.xml:20:9-121
+ADDED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soham\.android\build-cache\abe41b2f87a562cddf91024bad8a2555af690ece\output\AndroidManifest.xml:20:9-121
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\Soham\.android\build-cache\0fdadf542c3df21041d212ea7eed35ac59f51ba1\output\AndroidManifest.xml:20:66-119
+		ADDED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soham\.android\build-cache\abe41b2f87a562cddf91024bad8a2555af690ece\output\AndroidManifest.xml:20:66-119
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\Soham\.android\build-cache\0fdadf542c3df21041d212ea7eed35ac59f51ba1\output\AndroidManifest.xml:20:20-65
+		ADDED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soham\.android\build-cache\abe41b2f87a562cddf91024bad8a2555af690ece\output\AndroidManifest.xml:20:20-65
+meta-data#android.support.VERSION
+ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Soham\.android\build-cache\a239449d7a6ea1ec52c1ad471e8cff135e01ec4e\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Soham\.android\build-cache\d35379823beeb3d5b1cbcc5ac4b3842c36946bb5\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Soham\.android\build-cache\efe85a4698e484bdedf8484f3b52985110b52607\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Soham\.android\build-cache\23a7f4b6e491180833ae852c2997897a2466fc55\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Soham\.android\build-cache\986ab3b614e197753cf36a71da71218e135bbeba\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Soham\.android\build-cache\0937ca77253b6febfdab0c44c7cf9db602d8676a\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Soham\.android\build-cache\ab4e77d62bd8c87d9fc112d2d0a23839f53281d8\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Soham\.android\build-cache\e54a7a18a05135b46ca81267d0d3846e43aad45e\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:24:9-31
+	android:name
+		ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:23:9-47

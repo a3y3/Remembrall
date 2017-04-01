@@ -1,38 +1,31 @@
 package com.example.soham.remembrall;
 
 import android.app.AlarmManager;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.SystemClock;
-import android.renderscript.ScriptGroup;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ActionBarOverlayLayout;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.InputType;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.inputmethod.EditorInfo;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class CreateNote extends AppCompatActivity{
     private SQLiteDatabase sqLiteDatabase;
-    private Cursor cursor;
     private String titleText, noteText, isCheckBox;
     private EditText title, note;
     private String databaseName;
@@ -40,6 +33,7 @@ public class CreateNote extends AppCompatActivity{
     private String cardTitleFromIntent;
     private boolean updateNote = false;
     private boolean dontSaveNote = false;
+    boolean doNotFocus;
 
 
     @Override
@@ -55,9 +49,13 @@ public class CreateNote extends AppCompatActivity{
         databaseName = getIntentValues.getStringExtra("databaseName");
         cardNoteFromIntent = getIntentValues.getStringExtra("cardText");
         cardTitleFromIntent = getIntentValues.getStringExtra("cardTitle");
+        doNotFocus = getIntentValues.getBooleanExtra("doNotFocus", false);
+        Log.d("110",doNotFocus+"");
 
         title = (EditText) findViewById(R.id.add_title);
-        title.requestFocus();
+        if(!doNotFocus){
+            title.requestFocus();
+        }                                                   //TODO this does not work as line android:windowSoftInputMode="stateVisible" in AndroidManifest still requests focus
         note = (EditText) findViewById(R.id.note_textfield);
 
         //All things database
@@ -95,7 +93,30 @@ public class CreateNote extends AppCompatActivity{
         int id = item.getItemId();
         switch (id){
             case R.id.add_note_reminder:
-                Toast.makeText(this, "Added Reminder successfully!", Toast.LENGTH_SHORT).show();
+                Calendar calendar = Calendar.getInstance();
+                final Dialog dateDialog = new Dialog(CreateNote.this);
+                dateDialog.setContentView(R.layout.custom_picker);
+                dateDialog.setTitle("Pick the date");
+                final Dialog timeDialog = new Dialog(CreateNote.this);
+                timeDialog.setContentView(R.layout.time_picker);
+                timeDialog.setTitle("Pick the time");
+                dateDialog.show();
+                final DatePicker datePicker = (DatePicker)dateDialog.findViewById(R.id.date_picker);
+                datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        dateDialog.cancel();
+                        timeDialog.show();
+                    }
+                });
+                TimePicker timePicker = (TimePicker)timeDialog.findViewById(R.id.time_picker);
+                timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+                    @Override
+                    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                    }
+                });
+
+
                 break;
 
             case android.R.id.home:
@@ -108,11 +129,13 @@ public class CreateNote extends AppCompatActivity{
                 break;
 
             case R.id.action_5:
-                scheduleNotification(getNotification("5 second delay"), 5000);
+                titleText = title.getText().toString();
+                noteText = note.getText().toString();
+                scheduleNotification(getNotification(titleText, noteText), 5000);
                 break;
 
             case R.id.action_10:
-                scheduleNotification(getNotification("10 second delay"), 10000);
+                scheduleNotification(getNotification(titleText, noteText), 10000);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -129,10 +152,14 @@ public class CreateNote extends AppCompatActivity{
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
 
-    private Notification getNotification(String content){
+    private Notification getNotification(String title, String content){
         Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("Scheduled Notification!");
+        builder.setContentTitle(title);
         builder.setContentText(content);
+        if(title.equals("")){
+            builder.setContentTitle(content);
+            builder.setContentText("");
+        }
         builder.setSmallIcon(R.mipmap.remembrall);
         return builder.build();
     }

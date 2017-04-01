@@ -145,6 +145,7 @@ public class DisplayNotes extends AppCompatActivity
                     intent.putExtra("cardTitle",noteHolder.get_title());
                     intent.putExtra("cardText", noteHolder.get_note());
                     intent.putExtra("databaseName", databaseName);
+                    intent.putExtra("doNotFocus",true);
                     startActivity(intent);
                 }
 
