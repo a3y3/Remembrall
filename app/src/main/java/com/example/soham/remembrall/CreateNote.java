@@ -1,9 +1,11 @@
 package com.example.soham.remembrall;
 
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,6 +36,8 @@ public class CreateNote extends AppCompatActivity{
     private boolean updateNote = false;
     private boolean dontSaveNote = false;
     boolean doNotFocus;
+    boolean reminderSet = false;
+    long timeDelay;
 
 
     @Override
@@ -50,7 +54,6 @@ public class CreateNote extends AppCompatActivity{
         cardNoteFromIntent = getIntentValues.getStringExtra("cardText");
         cardTitleFromIntent = getIntentValues.getStringExtra("cardTitle");
         doNotFocus = getIntentValues.getBooleanExtra("doNotFocus", false);
-        Log.d("110",doNotFocus+"");
 
         title = (EditText) findViewById(R.id.add_title);
         if(!doNotFocus){
@@ -83,6 +86,14 @@ public class CreateNote extends AppCompatActivity{
             if(!dontSaveNote)
                 sqLiteDatabase.execSQL("INSERT INTO CARDS(TITLE, NOTE) VALUES('" + titleText + "','" + noteText + "')");
         }
+        if(reminderSet)
+            setReminder();
+    }
+
+    public void setReminder(){
+        titleText = title.getText().toString();
+        noteText = note.getText().toString();
+        scheduleNotification(getNotification(titleText, noteText), timeDelay);
     }
 
     @Override
@@ -93,29 +104,31 @@ public class CreateNote extends AppCompatActivity{
         int id = item.getItemId();
         switch (id){
             case R.id.add_note_reminder:
-                Calendar calendar = Calendar.getInstance();
-                final Dialog dateDialog = new Dialog(CreateNote.this);
-                dateDialog.setContentView(R.layout.custom_picker);
-                dateDialog.setTitle("Pick the date");
-                final Dialog timeDialog = new Dialog(CreateNote.this);
-                timeDialog.setContentView(R.layout.time_picker);
-                timeDialog.setTitle("Pick the time");
-                dateDialog.show();
-                final DatePicker datePicker = (DatePicker)dateDialog.findViewById(R.id.date_picker);
-                datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
-                    @Override
-                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        dateDialog.cancel();
-                        timeDialog.show();
-                    }
-                });
-                TimePicker timePicker = (TimePicker)timeDialog.findViewById(R.id.time_picker);
-                timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-                    @Override
-                    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                    }
-                });
+                final Calendar calendar = Calendar.getInstance();
+                final int thisYear = calendar.get(Calendar.YEAR);
+                final int thisMonth = calendar.get(Calendar.MONTH);
+                final int thisDay = calendar.get(Calendar.DAY_OF_MONTH);
 
+                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, final int year, final int month, final int dayOfMonth) {
+                        final int thisHour = calendar.get(Calendar.HOUR);
+                        final int thisMinute = calendar.get(Calendar.MINUTE);
+                        TimePickerDialog timePickerDialog = new TimePickerDialog(CreateNote.this, new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                Toast.makeText(CreateNote.this, "Thank you. You shall be reminded in time.", Toast.LENGTH_SHORT).show();
+                                reminderSet = true;
+                                timeDelay = (year - thisYear) * 365 * 24 * 60 * 60 * 1000 + (month - thisMonth) * 30 * 24 * 60 * 60 * 1000 +
+                                        (dayOfMonth - thisDay) * 24 * 60 * 60 * 1000 + (hourOfDay - thisHour) * 60 * 60 * 1000 +
+                                        (minute - thisMinute) * 60 * 1000;
+                            }
+
+                        }, thisHour, thisMinute,false);    //TODO add variable for 24 hour time in settings
+                        timePickerDialog.show();
+                    }
+                }, thisYear, thisMonth, thisDay);
+                datePickerDialog.show();
 
                 break;
 
@@ -141,7 +154,7 @@ public class CreateNote extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    private void scheduleNotification(Notification notification, int delay){
+    private void scheduleNotification(Notification notification, long delay){
         Intent notificationIntent = new Intent(this, NotificationPublisher.class);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
