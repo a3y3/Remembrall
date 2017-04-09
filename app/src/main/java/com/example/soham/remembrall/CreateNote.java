@@ -148,6 +148,8 @@ public class CreateNote extends AppCompatActivity{
                 break;
 
             case R.id.action_10:
+                titleText = title.getText().toString();
+                noteText = note.getText().toString();
                 scheduleNotification(getNotification(titleText, noteText), 10000);
                 break;
         }

@@ -1,5 +1,6 @@
 package com.example.soham.remembrall;
 
+import android.animation.Animator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -42,6 +43,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.android.gms.auth.api.Auth;
@@ -56,6 +58,10 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.plus.Plus;
+import com.willowtreeapps.spruce.Spruce;
+import com.willowtreeapps.spruce.animation.DefaultAnimations;
+import com.willowtreeapps.spruce.sort.DefaultSort;
+import com.willowtreeapps.spruce.sort.LinearSort;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -65,7 +71,7 @@ import java.util.List;
 
 public class DisplayNotes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = "DisplayActivity";
 
     private LinearLayout navBar;
     private ImageView navProfilePicture;
@@ -162,13 +168,20 @@ public class DisplayNotes extends AppCompatActivity
             GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
             String personName = googleSignInAccount.getDisplayName();
             databaseName = "Cards-"+personName;
-            String photoURL = googleSignInAccount.getPhotoUrl().toString();
             String personEmail = googleSignInAccount.getEmail();
             String coverPhotoURL = "";
+            String photoURL = "";
             try {
+                photoURL = googleSignInAccount.getPhotoUrl().toString();
+                if(photoURL == null){
+                    photoURL = "";
+                }
                 FileInputStream fileInputStream = getApplicationContext().openFileInput("coverPhoto");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
                 coverPhotoURL = bufferedReader.readLine();
+                if(coverPhotoURL == null){
+                    coverPhotoURL = "";
+                }
                 fileInputStream.close();
             }
             catch (Exception exception) {
@@ -265,7 +278,6 @@ public class DisplayNotes extends AppCompatActivity
     public void onConnectionFailed(ConnectionResult connectionResult)
     {
         Log.d(TAG,"Connection failed because of"+connectionResult);
-
     }
 
     @Override

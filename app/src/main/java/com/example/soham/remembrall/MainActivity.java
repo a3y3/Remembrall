@@ -1,4 +1,4 @@
-    package com.example.soham.remembrall;
+package com.example.soham.remembrall;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,27 +38,23 @@ import java.io.FileOutputStream;
         private GoogleApiClient googleApiClient;
 
         private SignInButton signInButton;
-        private Button signOutButton;
+        //private Button signOutButton;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
 
             //Starting Sign-in <code></code>
             signInButton = (SignInButton)findViewById(R.id.signInButton);
-            signOutButton = (Button)findViewById(R.id.signOutButton);
 
             signInButton.setOnClickListener(this);
-            signOutButton.setOnClickListener(this);
 
             GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(new Scope(Scopes.PLUS_LOGIN)).requestEmail().build();
             googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions).addApi(Plus.API).build();
 
 
-            signInButton.setSize(SignInButton.SIZE_STANDARD);
+            signInButton.setSize(SignInButton.SIZE_WIDE);
         }
 
         @Override
@@ -69,9 +65,6 @@ import java.io.FileOutputStream;
                 case R.id.signInButton:
                     signIn();
                     break;
-                case R.id.signOutButton:
-                    signOut();
-                    break;
             }
         }
 
@@ -81,7 +74,7 @@ import java.io.FileOutputStream;
             startActivityForResult(signInIntent,007);
         }
 
-        private void signOut()
+      /*  private void signOut()
         {
             Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
                 @Override
@@ -90,7 +83,7 @@ import java.io.FileOutputStream;
 
                 }
             });
-        }
+        }*/
 
         private void handleSignInResult(GoogleSignInResult googleSignInResult)
         {
@@ -99,10 +92,14 @@ import java.io.FileOutputStream;
             if(googleApiClient.hasConnectedApi(Plus.API))
             {
                 Person person = Plus.PeopleApi.getCurrentPerson(googleApiClient);
-                if(person!=null)
-                {
-                    Person.Cover.CoverPhoto coverPhoto = person.getCover().getCoverPhoto();
-                    coverPhotoURL = coverPhoto.getUrl();
+                if(person!=null) {
+                    try {
+                        Person.Cover.CoverPhoto coverPhoto = person.getCover().getCoverPhoto();
+                        coverPhotoURL = coverPhoto.getUrl();
+                    }
+                    catch (Exception e){
+                        Log.e("404","User has no cover photo");
+                    }
                 }
             }
             if(googleSignInResult.isSuccess())

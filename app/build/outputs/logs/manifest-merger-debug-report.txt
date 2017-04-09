@@ -35,15 +35,15 @@ MERGED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soha
 MERGED from [com.android.support.constraint:constraint-layout:1.0.1] C:\Users\Soham\.android\build-cache\e871f485190b45c7a5bd6a7b693420fe5c63916d\output\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:transition:25.3.1] C:\Users\Soham\.android\build-cache\d35379823beeb3d5b1cbcc5ac4b3842c36946bb5\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Soham\.android\build-cache\efe85a4698e484bdedf8484f3b52985110b52607\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Soham\.android\build-cache\23a7f4b6e491180833ae852c2997897a2466fc55\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Soham\.android\build-cache\986ab3b614e197753cf36a71da71218e135bbeba\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Soham\.android\build-cache\0937ca77253b6febfdab0c44c7cf9db602d8676a\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Soham\.android\build-cache\ab4e77d62bd8c87d9fc112d2d0a23839f53281d8\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Soham\.android\build-cache\e54a7a18a05135b46ca81267d0d3846e43aad45e\output\AndroidManifest.xml:29:5-20
 	android:label
 		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:15:9-41
@@ -60,7 +60,7 @@ ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:18:9-23:20
 	android:label
 		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:20:13-42
 	android:theme
-		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:21:13-56
+		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:21:13-57
 	android:name
 		ADDED from D:\Remembrall\app\src\main\AndroidManifest.xml:19:13-41
 activity#com.example.soham.remembrall.DisplayNotes
@@ -106,16 +106,17 @@ MERGED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soha
 MERGED from [com.android.support.constraint:constraint-layout:1.0.1] C:\Users\Soham\.android\build-cache\e871f485190b45c7a5bd6a7b693420fe5c63916d\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Soham\.android\build-cache\a239449d7a6ea1ec52c1ad471e8cff135e01ec4e\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:transition:25.3.1] C:\Users\Soham\.android\build-cache\d35379823beeb3d5b1cbcc5ac4b3842c36946bb5\output\AndroidManifest.xml:20:5-44
+MERGED from [com.willowtreeapps.spruce:spruce-android:1.0.0] C:\Users\Soham\.android\build-cache\1454311622331f8d35d7ad40f85dba567024fe8b\output\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Soham\.android\build-cache\efe85a4698e484bdedf8484f3b52985110b52607\output\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Soham\.android\build-cache\23a7f4b6e491180833ae852c2997897a2466fc55\output\AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Soham\.android\build-cache\986ab3b614e197753cf36a71da71218e135bbeba\output\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Soham\.android\build-cache\0937ca77253b6febfdab0c44c7cf9db602d8676a\output\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Soham\.android\build-cache\ab4e77d62bd8c87d9fc112d2d0a23839f53281d8\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Soham\.android\build-cache\e54a7a18a05135b46ca81267d0d3846e43aad45e\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
 		ADDED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:23:9-59
@@ -160,16 +161,16 @@ ADDED from [com.google.android.gms:play-services-basement:10.2.1] C:\Users\Soham
 meta-data#android.support.VERSION
 ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:design:25.3.1] C:\Users\Soham\.android\build-cache\767d0c9113a7aa77a7a44715d7546a5bf2386d4b\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Soham\.android\build-cache\a239449d7a6ea1ec52c1ad471e8cff135e01ec4e\output\AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:transition:25.3.1] C:\Users\Soham\.android\build-cache\d35379823beeb3d5b1cbcc5ac4b3842c36946bb5\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Soham\.android\build-cache\ac338155ff4ba7b6e32fdb5bc629ffc1952985b3\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Soham\.android\build-cache\efe85a4698e484bdedf8484f3b52985110b52607\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Soham\.android\build-cache\23a7f4b6e491180833ae852c2997897a2466fc55\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Soham\.android\build-cache\986ab3b614e197753cf36a71da71218e135bbeba\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Soham\.android\build-cache\0937ca77253b6febfdab0c44c7cf9db602d8676a\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Soham\.android\build-cache\ab4e77d62bd8c87d9fc112d2d0a23839f53281d8\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\1da04433392daae73a474260c350ccaf9520847b\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Soham\.android\build-cache\3a5dcd57e509c479f3a19c0f386de0f98a4e22e1\output\AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Soham\.android\build-cache\e54a7a18a05135b46ca81267d0d3846e43aad45e\output\AndroidManifest.xml:25:5-27:34
 	android:value
 		ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Soham\.android\build-cache\b4ce457a4e0932e2302ece0aae709bd754fe883d\output\AndroidManifest.xml:24:9-31

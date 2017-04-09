@@ -10,29 +10,47 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.soham.remembrall.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:context="com.example.soham.remembrall.MainActivity">
+
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/signInButton"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="62dp">
 
     </com.google.android.gms.common.SignInButton>
-    <Button
-        android:id="@+id/signOutButton"
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@mipmap/remembrall"
+        android:layout_marginTop="102dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signInButton"
+        android:textSize="28sp"
+        android:layout_marginTop="62dp"
+        android:text="Remembrall"
+        android:textStyle="bold"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:text="Sign Out"
-        android:textAllCaps="false"
-        android:background="#FFFFFF"
-        android:shadowDx="10"
-        android:shadowDy="10"
-        android:shadowRadius="10"
-        />
+        android:layout_marginTop="33dp"
+        android:text="Store all you need! Please Sign In to continue." />
 
 
 </RelativeLayout>

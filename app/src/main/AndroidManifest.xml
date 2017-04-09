@@ -18,7 +18,7 @@
         <activity
             android:name=".MainActivity"
             android:label="Please Log In"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar2">
 
         </activity>
         <activity
