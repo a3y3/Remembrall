@@ -50,7 +50,7 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
-        android:text="Store all you need! Please Sign In to continue." />
+        android:text="@string/welcome_message" />
 
 
 </RelativeLayout>
